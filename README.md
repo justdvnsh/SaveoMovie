@@ -8,6 +8,7 @@ GIF image link (design):
 https://assets.materialup.com/uploads/f627f7b2-43d5-4fc1-80dd-156e7008e3cc/preview.gif Use any free third party api for this assignment.
 
 Must follow:
+
 -[x] Must be in Kotlin.
 -[x] Must use Retrofit for Network call.
 -[x] Design must be as accurate as possible.
@@ -20,6 +21,7 @@ Must follow:
 -[x] Must upload the code to github.com, and share the link in email.
 
 Bonus:
+
 -[x] If submitted within 1 day.
 -[x] Use coroutines for asynchronous calls.
 
