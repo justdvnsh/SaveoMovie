@@ -17,14 +17,16 @@ class HomeRemoteRepo @Inject constructor(
 
     private val service = retrofit.create(HomeService::class.java)
 
-    suspend fun getMovies(page: Int): HomeScreenModel? {
+    suspend fun getMovies(): MovieList? {
         val responsePopular = service.getPopularMovies()
-        val responseNowShowing = service.getNowPlaying(page = page)
-        return if (responsePopular.body() == null || responseNowShowing.body() == null) null
-        else HomeScreenModel(
-            popularMovies = responsePopular.body()!!.results,
-            nowShowing = responseNowShowing.body()!!.results
-        )
+        return if (responsePopular.body() == null) null
+        else responsePopular.body()
+    }
+
+    suspend fun getNowShowing(page: Int): MovieList? {
+        val response = service.getNowPlaying(page = page)
+        return if (response.body() == null) null
+        else response.body()
     }
 
     interface HomeService {

@@ -24,7 +24,7 @@ class EpoxyHomeController(): TypedEpoxyController<HomeScreenModel>() {
                 .addTo(this)
 
             epoxyTitle {
-                id(it.hashCode())
+                id("EPOXY TITLE")
                 title("Now Showing")
                 spanSizeOverride { totalSpanCount, _, _ -> totalSpanCount}
             }
@@ -33,6 +33,7 @@ class EpoxyHomeController(): TypedEpoxyController<HomeScreenModel>() {
                 epoxyNowShowing {
                     id(it.hashCode())
                     movie(it)
+                    spanSizeOverride { totalSpanCount, _, _ -> totalSpanCount / 3}
                 }
             }
         }

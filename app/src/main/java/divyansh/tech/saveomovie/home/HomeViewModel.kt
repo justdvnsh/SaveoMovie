@@ -1,5 +1,6 @@
 package divyansh.tech.saveomovie.home
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -19,17 +20,41 @@ class HomeViewModel @Inject constructor(
     private val _moviesLiveData = MutableLiveData<HomeScreenModel>()
     val moviesLiveData get() = _moviesLiveData
 
-    private var nowShowingPage = 1
+    private var nowShowingPage = 2
 
+    private var homeScreenModel = HomeScreenModel()
 
     init {
         getMovies()
+        getNowShowingMovies()
     }
 
-    fun getMovies() = viewModelScope.launch(Dispatchers.IO) {
-        val response  = repo.getMovies(nowShowingPage)
+    private fun getMovies() = viewModelScope.launch(Dispatchers.IO) {
+        val response  = repo.getMovies()
         response?.let {
-            _moviesLiveData.postValue(it)
+            homeScreenModel.popularMovies = it.results
+            _moviesLiveData.postValue(homeScreenModel)
+        }
+    }
+
+    private fun getNowShowingMovies() = viewModelScope.launch(Dispatchers.IO) {
+        val response  = repo.getNowShowing(1)
+        response?.let {
+            homeScreenModel.nowShowing = it.results
+            _moviesLiveData.postValue(homeScreenModel)
+        }
+    }
+
+    fun getNowShowingByPage() = viewModelScope.launch(Dispatchers.IO) {
+        val response  = repo.getNowShowing(nowShowingPage++)
+        response?.let {
+            homeScreenModel.nowShowing.addAll(it.results)
+            val model = HomeScreenModel(
+                popularMovies = homeScreenModel.popularMovies,
+                nowShowing = homeScreenModel.nowShowing
+            )
+            homeScreenModel = model
+            _moviesLiveData.postValue(model)
         }
     }
 }

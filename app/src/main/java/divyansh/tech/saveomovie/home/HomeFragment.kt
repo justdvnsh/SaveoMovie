@@ -1,10 +1,12 @@
 package divyansh.tech.saveomovie.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -27,6 +29,8 @@ class HomeFragment: Fragment() {
     private val controller by lazy {
         EpoxyHomeController()
     }
+
+//    private val
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,9 +56,22 @@ class HomeFragment: Fragment() {
             addOnScrollListener(object: RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    if (dy > 0) _binding.toolbar.title.text  = getString(R.string.now_showing)
-                    else _binding.toolbar.title.text = getString(R.string.movies)
+                    (this@apply as RecyclerView).layoutManager?.let {
+                        val carousel = it.findViewByPosition(1)
+                        if (carousel != null) _binding.toolbar.title.text  = getString(R.string.movies)
+                        else _binding.toolbar.title.text = getString(R.string.now_showing)
+                        if (dy > 0) {
+                            val visibleItemCount = (it as GridLayoutManager).childCount
+                            val totalItemCount = (it as GridLayoutManager).itemCount
+                            val pastVisibleItem = (it as GridLayoutManager).findFirstVisibleItemPosition()
+                            if (visibleItemCount + pastVisibleItem >= totalItemCount && pastVisibleItem >= 2) {
+                                viewModel.getNowShowingByPage()
+                            }
+
+                        }
+                    }
                 }
+
             })
         }
     }
