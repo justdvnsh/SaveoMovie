@@ -28,7 +28,7 @@
             app:layout_constraintBottom_toBottomOf="@id/center"
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/header"
-            android:background="@color/purple_200"
+            android:background="@drawable/gradient_background"
             >
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -51,7 +51,7 @@
                 app:layout_constraintEnd_toStartOf="@id/searchManga"
                 app:layout_constraintStart_toEndOf="@id/hamburger"
                 android:layout_marginStart="@dimen/spacing_very_small"
-                style="@style/toolbarStyle"
+                style="@style/textStyle"
                 android:text="@string/movies"
                 android:gravity="center"
                 />
@@ -114,11 +114,14 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:text="Book Now"
+            android:text="@string/book_now"
+            android:textSize="16sp"
+            android:textColor="#191970"
+            android:padding="@dimen/spacing_small"
             android:background="@drawable/shape_round_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/center"
@@ -139,7 +142,7 @@
                 app:layout_constraintTop_toBottomOf="@id/center"
                 app:layout_constraintVertical_bias="1.0"
                 android:text="Synopsis"
-                style="@style/toolbarStyle"
+                style="@style/textStyle"
                 android:layout_margin="@dimen/spacing_small"
                 />
 
