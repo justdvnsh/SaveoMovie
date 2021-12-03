@@ -9,21 +9,21 @@ https://assets.materialup.com/uploads/f627f7b2-43d5-4fc1-80dd-156e7008e3cc/previ
 
 Must follow:
 
--[x] Must be in Kotlin.
--[x] Must use Retrofit for Network call.
--[x] Design must be as accurate as possible.
+- [x] Must be in Kotlin.
+- [x] Must use Retrofit for Network call.
+- [x] Design must be as accurate as possible.
     - __NOTE__ : For the details screen the design is not exactly as the preview, since I was fetching everything from the internet. However, I have tried to keep the design as much same as possible along with the animations.
--[x] Use pagination (populate more data when the list is scrolled).
--[x] Max 2 days is allowed for assignment submission.
--[x] Write readable code
--[x] Functions/Methods name must reflect its objective/purpose.
--[x] Use MVVM architecture.
--[x] Must upload the code to github.com, and share the link in email.
+- [x] Use pagination (populate more data when the list is scrolled).
+- [x] Max 2 days is allowed for assignment submission.
+- [x] Write readable code
+- [x] Functions/Methods name must reflect its objective/purpose.
+- [x] Use MVVM architecture.
+- [x] Must upload the code to github.com, and share the link in email.
 
 Bonus:
 
--[x] If submitted within 1 day.
--[x] Use coroutines for asynchronous calls.
+- [x] If submitted within 1 day.
+- [x] Use coroutines for asynchronous calls.
 
 ## Working App Video -
 
