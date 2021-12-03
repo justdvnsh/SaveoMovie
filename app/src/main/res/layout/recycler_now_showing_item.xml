@@ -24,7 +24,8 @@
             android:layout_height="match_parent"
             android:background="?selectableItemBackgroundBorderless"
             imageUrl="@{movie.poster_path}"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            />
     </androidx.cardview.widget.CardView>
 
 </layout>

@@ -1,12 +1,16 @@
 package divyansh.tech.saveomovie.home
 
 import android.util.Log
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import dagger.hilt.android.lifecycle.HiltViewModel
 import divyansh.tech.saveomovie.home.dataModels.HomeScreenModel
+import divyansh.tech.saveomovie.home.dataModels.Movie
 import divyansh.tech.saveomovie.home.dataModels.MovieList
+import divyansh.tech.saveomovie.home.dataModels.ShareModel
 import divyansh.tech.saveomovie.home.source.HomeRemoteRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,6 +23,8 @@ class HomeViewModel @Inject constructor(
 
     private val _moviesLiveData = MutableLiveData<HomeScreenModel>()
     val moviesLiveData get() = _moviesLiveData
+
+    val navigateLiveData = MutableLiveData<ShareModel>()
 
     private var nowShowingPage = 2
 
@@ -56,5 +62,9 @@ class HomeViewModel @Inject constructor(
             homeScreenModel = model
             _moviesLiveData.postValue(model)
         }
+    }
+
+    fun navigate(imageView: AppCompatImageView, movie: Movie) {
+        navigateLiveData.value = ShareModel(imageView, movie)
     }
 }

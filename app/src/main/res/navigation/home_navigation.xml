@@ -15,5 +15,9 @@
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="divyansh.tech.saveomovie.movieDetails.MovieDetailFragment"
-        android:label="MovieDetailFragment" />
+        android:label="MovieDetailFragment" >
+        <argument
+            android:name="movie"
+            app:argType="divyansh.tech.saveomovie.home.dataModels.Movie" />
+    </fragment>
 </navigation>
