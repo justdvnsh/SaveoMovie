@@ -19,7 +19,7 @@ android {
     defaultConfig {
         applicationId "divyansh.tech.saveomovie"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
@@ -109,4 +109,7 @@ dependencies {
     //noinspection GradleDependency
     implementation "com.github.bumptech.glide:glide:$glide"
     kapt "com.github.bumptech.glide:compiler:$glide"
+
+    //Logging Library
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 }

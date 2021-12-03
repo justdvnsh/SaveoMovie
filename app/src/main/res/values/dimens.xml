@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="anime_info_item_start_margin">20dp</dimen>
+
+    <dimen name="spacing_very_small">8dp</dimen>
+    <dimen name="spacing_small">16dp</dimen>
+    <dimen name="spacing_large">32dp</dimen>
+</resources>

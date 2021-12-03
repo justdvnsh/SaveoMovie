@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="movie"
+            type="divyansh.tech.saveomovie.home.dataModels.Movie"
+            />
+    </data>
+    <androidx.cardview.widget.CardView
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:id="@+id/movieCardView"
+        android:layout_width="105dp"
+        android:layout_height="180dp"
+        app:cardCornerRadius="4dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/movieImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?selectableItemBackgroundBorderless"
+            imageUrl="@{movie.poster_path}"
+            android:scaleType="centerCrop" />
+    </androidx.cardview.widget.CardView>
+
+</layout>
