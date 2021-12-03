@@ -142,7 +142,8 @@
                 app:layout_constraintTop_toBottomOf="@id/center"
                 app:layout_constraintVertical_bias="1.0"
                 android:text="Synopsis"
-                style="@style/textStyle"
+                android:textSize="32sp"
+                android:textStyle="bold"
                 android:layout_margin="@dimen/spacing_small"
                 />
 

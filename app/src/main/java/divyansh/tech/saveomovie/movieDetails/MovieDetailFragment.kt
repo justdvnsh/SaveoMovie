@@ -72,13 +72,6 @@ class MovieDetailFragment: Fragment() {
     }
 
     private fun animate() {
-//        val transitionSet: TransitionSet = TransitionSet()
-//            .addTransition(ChangeClipBounds())
-//            .addTransition(ChangeTransform())
-//            .addTransition(ChangeBounds())
-//            .setDuration(500)
-//            .setOrdering(TransitionSet.ORDERING_TOGETHER)
-//            .setInterpolator(FastOutSlowInInterpolator())
         sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
         sharedElementReturnTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
         Glide.with(this)
