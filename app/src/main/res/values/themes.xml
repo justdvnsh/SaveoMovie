@@ -20,4 +20,10 @@
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/purple_200</item>
     </style>
+
+    <style name="textStyle">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 </resources>

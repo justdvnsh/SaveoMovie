@@ -29,7 +29,7 @@
             app:layout_constraintEnd_toStartOf="@id/searchManga"
             app:layout_constraintStart_toEndOf="@id/hamburger"
             android:layout_marginStart="@dimen/spacing_very_small"
-            style="@style/toolbarStyle"
+            style="@style/textStyle"
             android:text="@string/movies"
             android:gravity="center"
             />

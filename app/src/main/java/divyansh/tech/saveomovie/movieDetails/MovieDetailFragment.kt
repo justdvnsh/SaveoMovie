@@ -9,6 +9,8 @@ import android.view.ViewTreeObserver
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.*
 import com.bumptech.glide.Glide
@@ -17,6 +19,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import dagger.hilt.android.AndroidEntryPoint
+import divyansh.tech.saveomovie.common.animateView
 import divyansh.tech.saveomovie.databinding.FragmentMovieDetailBinding
 import divyansh.tech.saveomovie.utils.C.IMAGE_BASE_URL
 
@@ -42,14 +45,42 @@ class MovieDetailFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         postponeEnterTransition()
         super.onViewCreated(view, savedInstanceState)
-        val transitionSet: TransitionSet = TransitionSet()
-            .addTransition(ChangeClipBounds())
-            .addTransition(ChangeTransform())
-            .addTransition(ChangeBounds())
-            .setDuration(500)
-            .setOrdering(TransitionSet.ORDERING_TOGETHER)
-            .setInterpolator(FastOutSlowInInterpolator())
-        sharedElementEnterTransition = transitionSet
+        animate()
+        setupObservers()
+        setOnClickListeners()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getMovieDetail(args.movie.id)
+    }
+
+    private fun setupObservers() {
+        viewModel.movieDetailLiveData.observe(
+            viewLifecycleOwner,
+            Observer {
+                _binding.movie = it
+                animateViews()
+            }
+        )
+    }
+
+    private fun setOnClickListeners() {
+        _binding.hamburger.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun animate() {
+//        val transitionSet: TransitionSet = TransitionSet()
+//            .addTransition(ChangeClipBounds())
+//            .addTransition(ChangeTransform())
+//            .addTransition(ChangeBounds())
+//            .setDuration(500)
+//            .setOrdering(TransitionSet.ORDERING_TOGETHER)
+//            .setInterpolator(FastOutSlowInInterpolator())
+        sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
+        sharedElementReturnTransition = TransitionInflater.from(requireContext()).inflateTransition(android.R.transition.move)
         Glide.with(this)
             .load(IMAGE_BASE_URL + args.movie.poster_path)
             .listener(object : RequestListener<Drawable> {
@@ -76,5 +107,11 @@ class MovieDetailFragment: Fragment() {
             .dontTransform()
             .override(requireView().width, requireView().height)
             .into(_binding.imageView)
+    }
+
+    private fun animateViews() {
+        _binding.overview.animateView()
+        _binding.name.animateView()
+        _binding.ratings.animateView()
     }
 }

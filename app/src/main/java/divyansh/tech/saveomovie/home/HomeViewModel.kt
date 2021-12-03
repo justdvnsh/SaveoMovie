@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import dagger.hilt.android.lifecycle.HiltViewModel
+import divyansh.tech.saveomovie.common.Event
 import divyansh.tech.saveomovie.home.dataModels.HomeScreenModel
 import divyansh.tech.saveomovie.home.dataModels.Movie
 import divyansh.tech.saveomovie.home.dataModels.MovieList
@@ -24,7 +25,7 @@ class HomeViewModel @Inject constructor(
     private val _moviesLiveData = MutableLiveData<HomeScreenModel>()
     val moviesLiveData get() = _moviesLiveData
 
-    val navigateLiveData = MutableLiveData<ShareModel>()
+    val navigateLiveData = MutableLiveData<Event<ShareModel>>()
 
     private var nowShowingPage = 2
 
@@ -65,6 +66,6 @@ class HomeViewModel @Inject constructor(
     }
 
     fun navigate(imageView: AppCompatImageView, movie: Movie) {
-        navigateLiveData.value = ShareModel(imageView, movie)
+        navigateLiveData.value = Event(ShareModel(imageView, movie))
     }
 }

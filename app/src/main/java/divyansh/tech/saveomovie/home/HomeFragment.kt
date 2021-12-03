@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,8 +16,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.TransitionInflater
 import dagger.hilt.android.AndroidEntryPoint
 import divyansh.tech.saveomovie.R
+import divyansh.tech.saveomovie.common.EventObserver
 import divyansh.tech.saveomovie.databinding.FragmentHomeBinding
 import divyansh.tech.saveomovie.home.callbacks.HomeClickCallback
 import divyansh.tech.saveomovie.home.epoxy.EpoxyHomeController
@@ -48,6 +51,8 @@ class HomeFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupObservers()
+        postponeEnterTransition()
+        view.doOnPreDraw { startPostponedEnterTransition() }
     }
 
     private fun setupRecyclerView() {
@@ -74,7 +79,6 @@ class HomeFragment: Fragment() {
                         }
                     }
                 }
-
             })
         }
     }
@@ -89,7 +93,7 @@ class HomeFragment: Fragment() {
 
         viewModel.navigateLiveData.observe(
             viewLifecycleOwner,
-            Observer {
+            EventObserver {
                 val extra = FragmentNavigatorExtras(
                     it.imageView to "imageView"
                 )
